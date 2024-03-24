@@ -1,0 +1,19 @@
+{
+  "name": "express-ws",
+  "version": "1.0.0",
+  "description": "TDD with express",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest --watch"
+  },
+  "author": "MerAt",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
