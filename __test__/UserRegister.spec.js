@@ -15,7 +15,7 @@ beforeEach(() => {
 describe('User Registration', () => {
   it('returns 200 OK when signup request is valid', (done) => {
     request(app)
-      .post('/app/1.0/users')
+      .post('/api/1.0/users')
       .send({
         username: 'user1',
         email: 'user1@gmail.com',
@@ -29,7 +29,7 @@ describe('User Registration', () => {
 
   it('returns success message when signup request is valid', (done) => {
     request(app)
-      .post('/app/1.0/users')
+      .post('/api/1.0/users')
       .send({
         username: 'user1',
         email: 'user1@gmail.com',
@@ -43,7 +43,7 @@ describe('User Registration', () => {
 
   it('saves a user to database', (done) => {
     request(app)
-      .post('/app/1.0/users')
+      .post('/api/1.0/users')
       .send({
         username: 'user1',
         email: 'user1@gmail.com',
