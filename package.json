@@ -4,8 +4,8 @@
   "description": "TDD with express",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon index",
-    "test": "jest --watch",
+    "start": "cross-env NODE_ENV=development nodemon index",
+    "test": "cross-env NODE_ENV=test jest --watch",
     "lint": "eslint ."
   },
   "author": "MerAt",
