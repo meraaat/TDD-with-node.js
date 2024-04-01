@@ -12,34 +12,36 @@ beforeEach(() => {
   return User.destroy({ truncate: true });
 });
 
-describe('User Registration', () => {
-  const postValidUser = () => {
-    return request(app).post('/api/1.0/users').send({
-      username: 'user1',
-      email: 'user1@gmail.com',
-      password: 'P4ssword',
-    });
-  };
+const validUser = {
+  username: 'user1',
+  email: 'user1@gmail.com',
+  password: 'P4ssword',
+};
 
+const postUser = (user = validUser) => {
+  return request(app).post('/api/1.0/users').send(user);
+};
+
+describe('User Registration', () => {
   it('returns 200 OK when signup request is valid', async () => {
-    const response = await postValidUser();
+    const response = await postUser();
     expect(response.status).toBe(200);
   });
 
   it('returns success message when signup request is valid', async () => {
-    const response = await postValidUser();
+    const response = await postUser();
     expect(response.body.message).toBe('User created');
   });
 
   it('saves a user to database', async () => {
-    await postValidUser();
+    await postUser();
 
     const userList = await User.findAll();
     expect(userList.length).toBe(1);
   });
 
   it('saves a username and email to database', async () => {
-    await postValidUser();
+    await postUser();
 
     const userList = await User.findAll();
     const savedUser = userList[0];
@@ -48,7 +50,7 @@ describe('User Registration', () => {
   });
 
   it('hashes the user password in database', async () => {
-    await postValidUser();
+    await postUser();
 
     const userList = await User.findAll();
     const savedUser = userList[0];
