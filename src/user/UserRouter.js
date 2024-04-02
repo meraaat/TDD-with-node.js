@@ -8,6 +8,7 @@ router.post(
   '/api/1.0/users',
   check('username').notEmpty().withMessage('username cannot be null'),
   check('email').notEmpty().withMessage('email cannot be null'),
+  check('password').notEmpty().withMessage('password cannot be null'),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
