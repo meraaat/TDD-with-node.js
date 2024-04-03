@@ -89,11 +89,12 @@ describe('User Registration', () => {
     expect(Object.keys(body.validationError)).toEqual(['username', 'email']);
   });
 
-  it.each([
-    ['username', 'username cannot be null'],
-    ['email', 'email cannot be null'],
-    ['password', 'password cannot be null'],
-  ])('returns %s cannot be null when %s is bull', async (field, expectedMessage) => {
+  it.each`
+    field         | expectedMessage
+    ${'username'} | ${'username cannot be null'}
+    ${'email'}    | ${'email cannot be null'}
+    ${'password'} | ${'password cannot be null'}
+  `('returns $expectedMessage when $field is null', async ({ field, expectedMessage }) => {
     validUser[field] = null;
     const response = await postUser(validUser);
     const body = response.body;
