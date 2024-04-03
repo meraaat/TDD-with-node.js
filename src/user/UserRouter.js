@@ -6,7 +6,12 @@ const router = express.Router();
 
 router.post(
   '/api/1.0/users',
-  check('username').notEmpty().withMessage('username cannot be null'),
+  check('username')
+    .notEmpty()
+    .withMessage('username cannot be null')
+    .bail()
+    .isLength({ min: 4 })
+    .withMessage('username must min 4 and max 32 characters'),
   check('email').notEmpty().withMessage('email cannot be null'),
   check('password').notEmpty().withMessage('password cannot be null'),
   async (req, res) => {
