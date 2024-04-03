@@ -58,24 +58,23 @@ describe('User Registration', () => {
   });
 
   it('returns 400 when username is null', async () => {
-    validUser.username = null;
-    const response = await postUser(validUser);
+    const user = Object.assign({}, validUser, { username: null });
+    const response = await postUser(user);
 
     expect(response.status).toBe(400);
   });
 
   it('returns validationError field in response when validation error occurs', async () => {
-    validUser.username = null;
-    const response = await postUser(validUser);
+    const user = Object.assign({}, validUser, { username: null });
+    const response = await postUser(user);
 
     const body = response.body;
     expect(body.validationError).not.toBeUndefined();
   });
 
   it('returns error when username and email are both null.', async () => {
-    validUser.username = null;
-    validUser.email = null;
-    const response = await postUser(validUser);
+    const user = Object.assign({}, validUser, { username: null, email: null });
+    const response = await postUser(user);
 
     const body = response.body;
     expect(Object.keys(body.validationError)).toEqual(['username', 'email']);
@@ -87,8 +86,8 @@ describe('User Registration', () => {
     ${'email'}    | ${'email cannot be null'}
     ${'password'} | ${'password cannot be null'}
   `('returns $expectedMessage when $field is null', async ({ field, expectedMessage }) => {
-    validUser[field] = null;
-    const response = await postUser(validUser);
+    const user = Object.assign({}, validUser, validUser[field]);
+    const response = await postUser(user);
     const body = response.body;
     expect(body.validationError[field]).toBe(expectedMessage);
   });
