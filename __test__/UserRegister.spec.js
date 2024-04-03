@@ -58,32 +58,24 @@ describe('User Registration', () => {
   });
 
   it('returns 400 when username is null', async () => {
-    const response = await postUser({
-      username: null,
-      email: 'user1@gmail.com',
-      password: 'P4ssword',
-    });
+    validUser.username = null;
+    const response = await postUser(validUser);
 
     expect(response.status).toBe(400);
   });
 
   it('returns validationError field in response when validation error occurs', async () => {
-    const response = await postUser({
-      username: null,
-      email: 'user1@gmail.com',
-      password: 'P4ssword',
-    });
+    validUser.username = null;
+    const response = await postUser(validUser);
 
     const body = response.body;
     expect(body.validationError).not.toBeUndefined();
   });
 
   it('returns error when username and email are both null.', async () => {
-    const response = await postUser({
-      username: null,
-      email: null,
-      password: 'P4ssword',
-    });
+    validUser.username = null;
+    validUser.email = null;
+    const response = await postUser(validUser);
 
     const body = response.body;
     expect(Object.keys(body.validationError)).toEqual(['username', 'email']);
