@@ -85,9 +85,9 @@ describe('User Registration', () => {
     ${'username'} | ${null}           | ${'username cannot be null'}
     ${'username'} | ${'usr'}          | ${'username must min 4 and max 32 characters'}
     ${'username'} | ${'a'.repeat(33)} | ${'username must min 4 and max 32 characters'}
-    ${'email'}    | ${null}           | ${'email cannot be null'}
-    ${'email'}    | ${'mail.com'}     | ${'email is not valid'}
-    ${'email'}    | ${'user@gmail'}   | ${'email is not valid'}
+    ${'email'}    | ${null}           | ${'E-mail cannot be null'}
+    ${'email'}    | ${'mail.com'}     | ${'E-mail is not valid'}
+    ${'email'}    | ${'user@gmail'}   | ${'E-mail is not valid'}
     ${'password'} | ${null}           | ${'password cannot be null'}
   `('returns $expectedMessage when $field is $value', async ({ field, value, expectedMessage }) => {
     const user = Object.assign({}, validUser, { [field]: value });
