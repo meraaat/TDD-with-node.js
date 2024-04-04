@@ -18,7 +18,10 @@ router.post(
     .withMessage('password cannot be null')
     .bail()
     .isLength({ min: 6 })
-    .withMessage('password must be at least 6 characters'),
+    .withMessage('password must be at least 6 characters')
+    .bail()
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
+    .withMessage('password must have at least 1 uppercase, 1 lowercase letter and 1 number'),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
