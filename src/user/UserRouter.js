@@ -10,7 +10,7 @@ router.post(
     .notEmpty()
     .withMessage('username cannot be null')
     .bail()
-    .isLength({ min: 4 })
+    .isLength({ min: 4, max: 32 })
     .withMessage('username must min 4 and max 32 characters'),
   check('email').notEmpty().withMessage('email cannot be null'),
   check('password').notEmpty().withMessage('password cannot be null'),
