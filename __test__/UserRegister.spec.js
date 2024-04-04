@@ -91,6 +91,7 @@ describe('User Registration', () => {
     ${'email'}    | ${'user.gmail.com'} | ${'E-mail is not valid'}
     ${'password'} | ${null}             | ${'password cannot be null'}
     ${'password'} | ${'P4ssw'}          | ${'password must be at least 6 characters'}
+    ${'password'} | ${'alllowercase'}   | ${'password must have at least 1 uppercase, 1 lowercase letter and 1 number'}
   `('returns $expectedMessage when $field is $value', async ({ field, value, expectedMessage }) => {
     const user = Object.assign({}, validUser, { [field]: value });
     const response = await postUser(user);
