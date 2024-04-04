@@ -111,4 +111,14 @@ describe('User Registration', () => {
     const body = response.body;
     expect(body.validationError.email).toBe('E-mail is in use');
   });
+
+  it('returns errors for both username is null and E-mail is in use ', async () => {
+    await User.create(validUser);
+
+    const user = Object.assign({}, validUser, { username: null });
+
+    const response = await postUser(user);
+    const body = response.body;
+    expect(Object.keys(body.validationError)).toEqual(['username', 'email']);
+  });
 });
