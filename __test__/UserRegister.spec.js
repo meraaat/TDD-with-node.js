@@ -81,11 +81,12 @@ describe('User Registration', () => {
   });
 
   it.each`
-    field         | value    | expectedMessage
-    ${'username'} | ${null}  | ${'username cannot be null'}
-    ${'username'} | ${'usr'} | ${'username must min 4 and max 32 characters'}
-    ${'email'}    | ${null}  | ${'email cannot be null'}
-    ${'password'} | ${null}  | ${'password cannot be null'}
+    field         | value             | expectedMessage
+    ${'username'} | ${null}           | ${'username cannot be null'}
+    ${'username'} | ${'usr'}          | ${'username must min 4 and max 32 characters'}
+    ${'username'} | ${'a'.repeat(33)} | ${'username must min 4 and max 32 characters'}
+    ${'email'}    | ${null}           | ${'email cannot be null'}
+    ${'password'} | ${null}           | ${'password cannot be null'}
   `('returns $expectedMessage when $field is $value', async ({ field, value, expectedMessage }) => {
     const user = Object.assign({}, validUser, { [field]: value });
     const response = await postUser(user);
