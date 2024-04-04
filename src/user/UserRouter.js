@@ -12,7 +12,17 @@ router.post(
     .bail()
     .isLength({ min: 4, max: 32 })
     .withMessage('username must min 4 and max 32 characters'),
-  check('email').notEmpty().withMessage('E-mail cannot be null').bail().isEmail().withMessage('E-mail is not valid'),
+  check('email')
+    .notEmpty()
+    .withMessage('E-mail cannot be null')
+    .bail()
+    .isEmail()
+    .withMessage('E-mail is not valid')
+    .bail()
+    .custom(async (email) => {
+      const user = await UserService.findByEmail(email);
+      if (user) throw new Error('E-mail is in use');
+    }),
   check('password')
     .notEmpty()
     .withMessage('password cannot be null')
@@ -27,6 +37,7 @@ router.post(
     if (!errors.isEmpty()) {
       const validationError = {};
       errors.array().forEach((error) => (validationError[error.path] = error.msg));
+      console.log(`errrrrror : ${Object.keys(validationError)}, ${Object.values(validationError)}`);
       return res.status(400).send({ validationError });
     }
 
