@@ -105,11 +105,10 @@ describe('User Registration', () => {
   });
 
   it('returns E-mail is in use when same E-mail already in use', async () => {
-    const user = validUser;
-    await User.create(user);
+    await User.create(validUser);
 
     const response = await postUser();
     const body = response.body;
-    expect(body.validationError).toBe('E-mail is in use');
+    expect(body.validationError.email).toBe('E-mail is in use');
   });
 });
