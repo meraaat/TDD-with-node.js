@@ -81,15 +81,16 @@ describe('User Registration', () => {
   });
 
   it.each`
-    field         | value             | expectedMessage
-    ${'username'} | ${null}           | ${'username cannot be null'}
-    ${'username'} | ${'usr'}          | ${'username must min 4 and max 32 characters'}
-    ${'username'} | ${'a'.repeat(33)} | ${'username must min 4 and max 32 characters'}
-    ${'email'}    | ${null}           | ${'E-mail cannot be null'}
-    ${'email'}    | ${'mail.com'}     | ${'E-mail is not valid'}
-    ${'email'}    | ${'user@gmail'}   | ${'E-mail is not valid'}
-    ${'password'} | ${null}           | ${'password cannot be null'}
-    ${'password'} | ${'P4ssw'}        | ${'password must be at least 6 characters'}
+    field         | value               | expectedMessage
+    ${'username'} | ${null}             | ${'username cannot be null'}
+    ${'username'} | ${'usr'}            | ${'username must min 4 and max 32 characters'}
+    ${'username'} | ${'a'.repeat(33)}   | ${'username must min 4 and max 32 characters'}
+    ${'email'}    | ${null}             | ${'E-mail cannot be null'}
+    ${'email'}    | ${'mail.com'}       | ${'E-mail is not valid'}
+    ${'email'}    | ${'user@gmail'}     | ${'E-mail is not valid'}
+    ${'email'}    | ${'user.gmail.com'} | ${'E-mail is not valid'}
+    ${'password'} | ${null}             | ${'password cannot be null'}
+    ${'password'} | ${'P4ssw'}          | ${'password must be at least 6 characters'}
   `('returns $expectedMessage when $field is $value', async ({ field, value, expectedMessage }) => {
     const user = Object.assign({}, validUser, { [field]: value });
     const response = await postUser(user);
