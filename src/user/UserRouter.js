@@ -12,7 +12,7 @@ router.post(
     .bail()
     .isLength({ min: 4, max: 32 })
     .withMessage('username must min 4 and max 32 characters'),
-  check('email').notEmpty().withMessage('email cannot be null'),
+  check('email').notEmpty().withMessage('email cannot be null').bail().isEmail().withMessage('email is not valid'),
   check('password').notEmpty().withMessage('password cannot be null'),
   async (req, res) => {
     const errors = validationResult(req);
