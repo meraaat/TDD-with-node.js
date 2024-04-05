@@ -36,7 +36,7 @@ router.post(
     }
 
     await UserService.save(req.body);
-    return res.send({ message: 'User created' });
+    return res.send({ message: req.t('user_created') });
   },
 );
 
