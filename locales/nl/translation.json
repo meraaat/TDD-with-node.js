@@ -1,0 +1,10 @@
+{
+  "username_null": "gebruikersnaam mag niet nul zijn",
+  "username_size": "username must min 4 and max 32 characters",
+  "email_null": "gebruikersnaam moet minimaal 4 en maximaal 32 tekens bevatten",
+  "email_invalid": "E-mail is niet geldig",
+  "password_null": "wachtwoord mag niet nul zijn",
+  "password_size": "Wachtwoord moet tenminste 6 tekens bevatten",
+  "password_pattern": "Het wachtwoord moet minimaal 1 hoofdletter, 1 kleine letter en 1 cijfer bevatten",
+  "email_inuse": "E-mail is in use"
+}
