@@ -6,5 +6,6 @@
   "password_null": "wachtwoord mag niet nul zijn",
   "password_size": "Wachtwoord moet tenminste 6 tekens bevatten",
   "password_pattern": "Het wachtwoord moet minimaal 1 hoofdletter, 1 kleine letter en 1 cijfer bevatten",
-  "email_inuse": "E-mail is in use"
+  "email_inuse": "E-mail is in gebruik",
+  "user_created": "Gebruiker gemaakt"
 }
