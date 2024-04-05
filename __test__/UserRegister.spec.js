@@ -141,7 +141,8 @@ describe('Internationalization', () => {
   const password_null = 'wachtwoord mag niet nul zijn';
   const password_size = 'Wachtwoord moet tenminste 6 tekens bevatten';
   const password_pattern = 'Het wachtwoord moet minimaal 1 hoofdletter, 1 kleine letter en 1 cijfer bevatten';
-  const email_inuse = 'E-mail is in use';
+  const email_inuse = 'E-mail is in gebruik';
+  const user_created = 'Gebruiker gemaakt';
   it.each`
     field         | value               | expectedMessage
     ${'username'} | ${null}             | ${username_null}
@@ -172,5 +173,10 @@ describe('Internationalization', () => {
     const response = await postUser(validUser, { language: 'nl' });
     const body = response.body;
     expect(body.validationError.email).toBe(email_inuse);
+  });
+
+  it(`returns ${user_created} when signup request is valid in use when language set as Dutch`, async () => {
+    const response = await postUser(validUser, { language: 'nl' });
+    expect(response.body.message).toBe(user_created);
   });
 });
