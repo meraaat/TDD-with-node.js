@@ -14,7 +14,7 @@ beforeEach(() => {
 
 const validUser = {
   username: 'user1',
-  email: 'user1@gmail.com',
+  email: 'user1@mail.com',
   password: 'P4ssword',
 };
 
@@ -48,7 +48,7 @@ describe('User Registration', () => {
     const userList = await User.findAll();
     const savedUser = userList[0];
     expect(savedUser.username).toBe('user1');
-    expect(savedUser.email).toBe('user1@gmail.com');
+    expect(savedUser.email).toBe('user1@mail.com');
   });
 
   it('hashes the user password in database', async () => {
